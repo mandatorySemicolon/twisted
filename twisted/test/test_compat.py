@@ -15,7 +15,8 @@ from twisted.trial import unittest
 from twisted.python.compat import (
     reduce, execfile, _PY3, comparable, cmp, nativeString, networkString,
     unicode as unicodeCompat, lazyByteSlice, reraise, NativeStringIO,
-    iterbytes, intToBytes, ioType, bytesEnviron, iteritems, _coercedUnicode
+    iterbytes, intToBytes, ioType, bytesEnviron, iteritems, _coercedUnicode,
+    unichr,
 )
 from twisted.python.filepath import FilePath
 
@@ -831,3 +832,16 @@ class CoercedUnicodeTests(unittest.TestCase):
             self.assertRaises(TypeError, _coercedUnicode, b'\xe2\x98\x83')
         else:
             self.assertRaises(UnicodeError, _coercedUnicode, b'\xe2\x98\x83')
+
+
+
+class UnichrTests(unittest.TestCase):
+    """
+    Tests for L{unichr}.
+    """
+
+    def test_unichr(self):
+        """
+        unichar exists and returns a unicode string with the given code point.
+        """
+        self.assertEqual(unichr(0x2603), u"\N{SNOWMAN}")
