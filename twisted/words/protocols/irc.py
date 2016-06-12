@@ -2747,7 +2747,7 @@ class DccFileReceiveBasic(protocol.Protocol, styles.Ephemeral):
         to override this.
         """
         self.bytesReceived = self.bytesReceived + len(data)
-        self.transport.write(struct.pack('!i', self.bytesReceived))
+        self.transport.write(struct.pack('!I', self.bytesReceived))
 
 
 class DccSendProtocol(protocol.Protocol, styles.Ephemeral):
